@@ -1,24 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import HeroComponent from './components/HeroComponent';
+import About from './components/About';
+import Products from './components/Products';
+import Home from './components/Home';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Blogs from './components/Blogs';
+import Login from './components/Login';
+import Signup from './components/Signup';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Router>
+     <div className='bg-gradient-to-r from-blue-500/75 to-purple-500/75  min-h-[100vh]'>
+
+      <Routes>
+        {/* Routs for all pages */}
+        <Route path="/" element={<HeroComponent />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+
+      </Routes>
+     </div>
+   </Router>
   );
 }
 
