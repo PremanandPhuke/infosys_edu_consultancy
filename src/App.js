@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import ForgotPassword from './components/ForgotPassword';
 
 
 
@@ -26,7 +27,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
       </Routes>
      </div>

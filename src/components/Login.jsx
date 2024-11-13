@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-8 text-center">
             <h2 className="text-3xl font-bold">GetStarted</h2>
             <p className="mt-2">
-            Join us today and start exploring new career and educational opportunities.
+              Join us today and start exploring new career and educational opportunities.
             </p>
             <Link to="/signup" className="mt-6 px-6 py-2 bg-white text-purple-600 rounded-md font-semibold hover:bg-gray-100">
               Register
@@ -45,7 +45,7 @@ const Login = () => {
               placeholder="Password"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
             /> */}
-             <div className="relative">
+            <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
@@ -58,7 +58,11 @@ const Login = () => {
               >
                 {showPassword ? '🙈' : '👁️'}
               </button>
-              </div>
+            </div>
+            {/* Forgot Password Link */} 
+            <div className="text-right">
+              <Link to="/forgot-password" className="text-purple-600 hover:underline">Forgot Password?</Link>
+            </div>
             <button type='submit' className="w-full px-4 py-2 bg-purple-600 text-white rounded-md font-semibold hover:bg-purple-700">
               Login
             </button>
