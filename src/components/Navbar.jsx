@@ -31,7 +31,7 @@ export default function Navbar() {
         <Link className='px-4 py-3' to="/blogs" >Blogs</Link>
 
 
-        <Link className='x-4 py-3'to="/login" >
+        <Link className='px-4 py-3'to="/login" >
         <AccountCircleIcon/>
         </Link>
         <button className='px-4'>

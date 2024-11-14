@@ -1,11 +1,70 @@
-// import React, {useState} from 'react';
+
+// import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 
 // const Signup = () => {
 //   const [showPassword, setShowPassword] = useState(false);
+//   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+//   const [password, setPassword] = useState('');
+//   const [confirmPassword, setConfirmPassword] = useState('');
+//   const [inputs, setInputs]= useState(
+//     {
+//       username:'',
+//       email:'',
+//       password:'',
+//       name:''
+//     }
+//   );
+//   const [err, setErr]= useState(false);
 
 //   const togglePasswordVisibility = () => {
 //     setShowPassword(!showPassword);
+//   };
+
+//   const toggleConfirmPasswordVisibility = () => {
+//     setShowConfirmPassword(!showConfirmPassword);
+//   };
+
+//   const handlePasswordChange = (e) => {
+//     setPassword(e.target.value);
+//   };
+
+//   const handleConfirmPasswordChange = (e) => {
+//     setConfirmPassword(e.target.value);
+//   };
+
+//   // Function to validate the pattern of password
+//   const validatePassword = () => {
+//     const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/;
+//     if (!passwordPattern.test(password)) {
+//       alert('Password must be at least 8 characters long, contain at least one uppercase letter, one special character, and one number.');
+//       return false;
+//     }
+//     if (password !== confirmPassword) {
+//       alert('Passwords do not match.');
+//       return false;
+//     }
+//     return true;
+//   };
+
+//     // Function to handle input changes
+//     const handleChange = (e) => {
+//       const { name, value } = e.target;
+//       setInputs((prev) => ({ ...prev, [name]: value }));
+//     };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (validatePassword()) {
+
+//       console.log(inputs);
+
+//       // Handle successful validation here
+//       console.log('Form submitted successfully');
+//     }
+//     else{
+//       console.log("Somthing goes wrong");
+//     }
 //   };
 
 //   return (
@@ -14,28 +73,35 @@
 //         {/* Left Side - Signup Form */}
 //         <div className="w-1/2 p-8">
 //           <h2 className="text-4xl font-semibold text-purple-600 mb-4">Register</h2>
-//           <form className="space-y-4">
+//           <form onSubmit={handleSubmit} className="space-y-4">
 //             <input
 //               type="text"
 //               placeholder="Username"
-//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
+//               name='username'
+//               onChange={handleChange}
+//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+//               required
 //             />
 //             <input
 //               type="email"
 //               placeholder="Email"
-//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
+//               name='email'
+//               onChange={handleChange}
+//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+//               required
 //             />
-//             {/* <input
-//               type="password"
-//               placeholder="Password"
-//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
-//             /> */}
 
+//             {/* Password Input with Pattern Validation */}
 //             <div className="relative">
 //               <input
 //                 type={showPassword ? 'text' : 'password'}
 //                 placeholder="Password"
-//                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
+//               name='password'
+//                 value={password}
+//                 onChange={handlePasswordChange}
+                
+//                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+//                 required
 //               />
 //               <button
 //                 type="button"
@@ -45,12 +111,35 @@
 //                 {showPassword ? '🙈' : '👁️'}
 //               </button>
 //             </div>
+
+//             {/* Confirm Password Input */}
+//             <div className="relative">
+//               <input
+//                 type={showConfirmPassword ? 'text' : 'password'}
+//                 placeholder="Confirm Password"
+//                 value={confirmPassword}
+//                 onChange={handleConfirmPasswordChange}
+//                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+//                 required
+//               />
+//               <button
+//                 type="button"
+//                 onClick={toggleConfirmPasswordVisibility}
+//                 className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+//               >
+//                 {/* {showConfirmPassword ? '🙈' : '👁️'} */}
+//               </button>
+//             </div>
+
 //             <input
 //               type="text"
 //               placeholder="Name"
-//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
+//               name='name'
+//               onChange={handleChange}
+//               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+//               required
 //             />
-//             <button type='submit' className="w-full px-4 py-2 bg-purple-600 text-white rounded-md font-semibold hover:bg-purple-700">
+//             <button  type="submit" className="w-full px-4 py-2 bg-purple-600 text-white rounded-md font-semibold hover:bg-purple-700">
 //               Register
 //             </button>
 //           </form>
@@ -81,15 +170,20 @@
 
 // export default Signup;
 
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [inputs, setInputs] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    name: ''
+  });
+  const [err, setErr] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -99,32 +193,33 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
+  // Function to validate the pattern of password
   const validatePassword = () => {
     const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/;
-    if (!passwordPattern.test(password)) {
+    if (!passwordPattern.test(inputs.password)) {
       alert('Password must be at least 8 characters long, contain at least one uppercase letter, one special character, and one number.');
       return false;
     }
-    if (password !== confirmPassword) {
+    if (inputs.password !== inputs.confirmPassword) {
       alert('Passwords do not match.');
       return false;
     }
     return true;
   };
 
+  // Function to handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validatePassword()) {
-      // Handle successful validation here
+      console.log(inputs);
       console.log('Form submitted successfully');
+    } else {
+      console.log('Something went wrong');
     }
   };
 
@@ -138,12 +233,18 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Username"
+              name="username"
+              value={inputs.username}
+              onChange={handleChange}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
             <input
               type="email"
               placeholder="Email"
+              name="email"
+              value={inputs.email}
+              onChange={handleChange}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
@@ -153,8 +254,9 @@ const Signup = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
+                name="password"
+                value={inputs.password}
+                onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               />
@@ -172,8 +274,9 @@ const Signup = () => {
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
+                name="confirmPassword"
+                value={inputs.confirmPassword}
+                onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               />
@@ -189,6 +292,9 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Name"
+              name="name"
+              value={inputs.name}
+              onChange={handleChange}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
