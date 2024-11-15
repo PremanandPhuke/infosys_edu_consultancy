@@ -4,9 +4,29 @@ import { Link } from 'react-router-dom';
 const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
+  const [inputs, setInputs] = useState({
+    username: '',
+   
+    password: '',
+   
+  });
+  const [err, setErr] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   
+      console.log(inputs);
+      console.log('Form submitted successfully');
+   
   };
 
   return (
@@ -34,10 +54,13 @@ const Login = () => {
         {/* Right Side - Login Form */}
         <div className="w-1/2 p-8">
           <h2 className="text-4xl font-semibold text-purple-600 mb-4">Login</h2>
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit}  className="space-y-4">
             <input
               type="text"
               placeholder="Username"
+              name="username"
+              value={inputs.username}
+              onChange={handleChange}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
             />
             {/* <input
@@ -49,6 +72,9 @@ const Login = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
+                name="password"
+                value={inputs.password}
+                onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" required
               />
               <button
