@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom';
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [inputs, setInputs] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    name: ''
+    name: '',
+    role: 'Student',
   });
   const [err, setErr] = useState(false);
 
@@ -45,6 +47,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validatePassword()) {
+      setShowPopup(true); // Show popup on successful submission
       console.log(inputs);
       console.log('Form submitted successfully');
     } else {
@@ -77,6 +80,19 @@ const Signup = () => {
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
+           
+           {/* Role Dropdown */}
+           <select
+              name="role"
+              value={inputs.role}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            >
+              <option value="Student">Student</option>
+              <option value="Admin">Admin</option>
+              <option value="Seller">Seller</option>
+            </select>
 
             {/* Password Input with Pattern Validation */}
             <div className="relative">
@@ -152,6 +168,22 @@ const Signup = () => {
           </div>
         </div>
       </div>
+
+       {/* Success Popup */}
+       {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 className="text-2xl font-semibold text-green-600">Success!</h3>
+            <p className="mt-4">Your account has been created successfully.</p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="mt-6 px-4 py-2 bg-purple-600 text-white rounded-md font-semibold hover:bg-purple-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
