@@ -8,8 +8,8 @@ import Home from './components/Home';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import ForgotPassword from './components/ForgotPassword';
 
 
