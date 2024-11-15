@@ -11,6 +11,7 @@ import Blogs from './components/Blogs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './components/ForgotPassword';
+import Dashboard from './pages/Dashboard';
 
 
 
@@ -28,6 +29,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/dashboard" element={<Dashboard userRole="admin" />} />
+
 
       </Routes>
      </div>
